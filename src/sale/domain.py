@@ -23,7 +23,7 @@ class Sale:
     @property
     def bids(self):
         """return a list copy of bids"""
-        return self.__bids.copy()
+        return list(self.__bids)
 
     def to_bet(self, user_bids: Bid):
         self.__bids.append(user_bids)
