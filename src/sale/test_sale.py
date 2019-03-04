@@ -56,7 +56,7 @@ class TestSale(unittest.TestCase):
     # TDD test
     def test_not_be_allow_multiple_bets_in_sequence(self):
         self.from_sale.to_bet(Bid(self.testcase1, 100))
-        self.from_sale.to_bet(Bid(self.testcase1, 100))
+        self.from_sale.to_bet(Bid(self.testcase2, 100))
         user_name_obj_id = [id(bid.user.name) for bid in self.from_sale.bids]
         self.assertNotEqual(user_name_obj_id[0], user_name_obj_id[1])
 
