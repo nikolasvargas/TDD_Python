@@ -2,7 +2,7 @@ from unittest import TestCase
 from domain import User, Bid, Sale, Classifier
 
 class TestClassifier(TestCase):
-    def test_numbers_bids(self):
+    def test_bids(self):
         from_sale = Sale('Phone')
 
         testcase1 = User('john')
