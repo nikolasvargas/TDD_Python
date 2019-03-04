@@ -14,9 +14,8 @@ class TestClassifier(unittest.TestCase):
 
         LOWER_EXPECTED_VALUE = 100
         HIGHER_EXPECTED_VALUE = 200
-
-        self.from_sale.bids.append(john_bid)
-        self.from_sale.bids.append(angel_bid)
+        self.from_sale.to_bet(john_bid)
+        self.from_sale.to_bet(angel_bid)
         self.classifier.evaluate_bid(self.from_sale)
         self.assertEqual(LOWER_EXPECTED_VALUE, self.classifier.lowest_bid)
         self.assertEqual(HIGHER_EXPECTED_VALUE, self.classifier.higher_bid)
@@ -33,7 +32,7 @@ class TestClassifier(unittest.TestCase):
             total_bids.append(Bid(self.testcase2, 1000))
 
         for bid in total_bids:
-            self.from_sale.bids.append(bid)
+            self.from_sale.to_bet(bid)
 
         self.classifier.evaluate_bid(self.from_sale)
         self.assertEqual(LOWER_EXPECTED_VALUE, self.classifier.lowest_bid)
@@ -45,7 +44,7 @@ class TestClassifier(unittest.TestCase):
 
         EXPECTED_VALUE = 5000
 
-        self.from_sale.bids.append(alone_bid)
+        self.from_sale.to_bet(alone_bid)
         self.classifier.evaluate_bid(self.from_sale)
         self.assertEqual(EXPECTED_VALUE, self.classifier.lowest_bid)
         self.assertEqual(EXPECTED_VALUE, self.classifier.higher_bid)

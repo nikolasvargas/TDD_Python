@@ -18,9 +18,13 @@ class Sale:
         self.description = description
         self.__bids = []
 
+    def to_bet(self, bid: Bid):
+        self.__bids.append(bid)
+
     @property
     def bids(self):
-        return self.__bids
+        """return a list copy of bids"""
+        return self.__bids.copy()
 
 class Classifier:
     def __init__(self):
