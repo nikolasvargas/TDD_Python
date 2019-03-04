@@ -1,0 +1,18 @@
+{
+    "python.pythonPath": "/usr/local/opt/python/bin/python3.6",
+    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./src/sale/",
+        "-p",
+        "test_*.py"
+    ],
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "python": "python3.6 -u",
+    }
+}
