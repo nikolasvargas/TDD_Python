@@ -16,23 +16,18 @@ class Bid:
 class Sale:
     def __init__(self, description):
         self.description = description
+        self.higher_bid = sys.float_info.min
+        self.lowest_bid = sys.float_info.max
         self.__bids = []
-
-    def to_bet(self, bid: Bid):
-        self.__bids.append(bid)
 
     @property
     def bids(self):
         """return a list copy of bids"""
         return self.__bids.copy()
 
-class Classifier:
-    def __init__(self):
-        self.higher_bid = sys.float_info.min
-        self.lowest_bid = sys.float_info.max
-
-    def evaluate_bid(self, sale: Sale):
-        for bid in sale.bids:
+    def to_bet(self, user_bids: Bid):
+        self.__bids.append(user_bids)
+        for bid in self.__bids:
             if bid.value > self.higher_bid:
                 self.higher_bid = bid.value
             if bid.value < self.lowest_bid:

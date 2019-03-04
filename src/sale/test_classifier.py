@@ -1,4 +1,4 @@
-from domain import User, Bid, Sale, Classifier
+from domain import User, Bid, Sale
 import unittest
 
 class TestClassifier(unittest.TestCase):
@@ -6,7 +6,6 @@ class TestClassifier(unittest.TestCase):
         self.testcase1 = User('john')
         self.testcase2 = User('angel')
         self.from_sale = Sale('Phone')
-        self.classifier = Classifier()
 
     def test_higher_and_lower_value_wagered_in_ascending_order(self):
         john_bid = Bid(self.testcase1, 100)
@@ -14,11 +13,11 @@ class TestClassifier(unittest.TestCase):
 
         LOWER_EXPECTED_VALUE = 100
         HIGHER_EXPECTED_VALUE = 200
+
         self.from_sale.to_bet(john_bid)
         self.from_sale.to_bet(angel_bid)
-        self.classifier.evaluate_bid(self.from_sale)
-        self.assertEqual(LOWER_EXPECTED_VALUE, self.classifier.lowest_bid)
-        self.assertEqual(HIGHER_EXPECTED_VALUE, self.classifier.higher_bid)
+        self.assertEqual(LOWER_EXPECTED_VALUE, self.from_sale.lowest_bid)
+        self.assertEqual(HIGHER_EXPECTED_VALUE, self.from_sale.higher_bid)
 
     def test_highest_and_lowest_value_whit_more_than_two_bets(self):
         from random import randrange
@@ -34,9 +33,8 @@ class TestClassifier(unittest.TestCase):
         for bid in total_bids:
             self.from_sale.to_bet(bid)
 
-        self.classifier.evaluate_bid(self.from_sale)
-        self.assertEqual(LOWER_EXPECTED_VALUE, self.classifier.lowest_bid)
-        self.assertEqual(HIGHER_EXPECTED_VALUE, self.classifier.higher_bid)
+        self.assertEqual(LOWER_EXPECTED_VALUE, self.from_sale.lowest_bid)
+        self.assertEqual(HIGHER_EXPECTED_VALUE, self.from_sale.higher_bid)
 
     def test_return_same_value_when_sale_have_one_bid(self):
         user_test_case = User('alone')
@@ -45,10 +43,8 @@ class TestClassifier(unittest.TestCase):
         EXPECTED_VALUE = 5000
 
         self.from_sale.to_bet(alone_bid)
-        self.classifier.evaluate_bid(self.from_sale)
-        self.assertEqual(EXPECTED_VALUE, self.classifier.lowest_bid)
-        self.assertEqual(EXPECTED_VALUE, self.classifier.higher_bid)
-
+        self.assertEqual(EXPECTED_VALUE, self.from_sale.lowest_bid)
+        self.assertEqual(EXPECTED_VALUE, self.from_sale.higher_bid)
 
 if __name__ == "__main__":
     unittest.main()
