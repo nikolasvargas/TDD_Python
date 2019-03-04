@@ -8,11 +8,11 @@ class TestClassifier(TestCase):
         testcase1 = User('john')
         testcase2 = User('angel')
 
-        nikolas_bid = Bid(testcase1, 100)
-        junior_bid = Bid(testcase2, 200)
+        john_bid = Bid(testcase1, 100)
+        angel_bid = Bid(testcase2, 200)
 
-        from_sale.bids.append(nikolas_bid)
-        from_sale.bids.append(junior_bid)
+        from_sale.bids.append(john_bid)
+        from_sale.bids.append(angel_bid)
 
         lower_expected_value = 100
         higher_expected_value = 200
