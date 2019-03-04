@@ -9,7 +9,7 @@ class User:
         return self.__name
 
 class Bid:
-    def __init__(self, user: User, value) -> None:
+    def __init__(self, user: User, value):
         self.user = user
         self.value = value
 
@@ -31,5 +31,5 @@ class Classifier:
         for bid in sale.bids:
             if bid.value > self.higher_bid:
                 self.higher_bid = bid.value
-            elif bid.value < self.lowest_bid:
+            if bid.value < self.lowest_bid:
                 self.lowest_bid = bid.value
