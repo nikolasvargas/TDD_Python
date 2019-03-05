@@ -22,15 +22,13 @@ class TestSale(unittest.TestCase):
         self.assertEqual(HIGHER_EXPECTED_VALUE, self.from_sale.higher_bid)
 
     def test_highest_and_lowest_value_whit_more_than_two_bets(self):
-        from random import randrange
-
         total_bids = []
         LOWER_EXPECTED_VALUE = 100
         HIGHER_EXPECTED_VALUE = 1000
 
-        for _ in range(randrange(3, 300)):
-            total_bids.append(Bid(self.testcase1, 100))
-            total_bids.append(Bid(self.testcase2, 1000))
+        total_bids.append(Bid(self.testcase1, 100))
+        total_bids.append(Bid(self.testcase2, 700))
+        total_bids.append(Bid(self.testcase1, 1000))
 
         for bid in total_bids:
             self.from_sale.to_bet(bid)
@@ -57,7 +55,7 @@ class TestSale(unittest.TestCase):
     def test_not_be_allow_multiple_bets_in_sequence(self):
         try:
             self.from_sale.to_bet(Bid(self.testcase1, 100))
-            self.from_sale.to_bet(Bid(self.testcase2, 100))
+            self.from_sale.to_bet(Bid(self.testcase2, 200))
         except ValueError:
             user_name_obj_id = [id(bid.user.name) for bid in self.from_sale.bids]
             self.assertNotEqual(user_name_obj_id[0], user_name_obj_id[1])

@@ -34,8 +34,13 @@ class Sale:
 
             self.__bids.append(user_bids)
         else:
-            raise ValueError('The same bettor cant bet twice in sequence')
+            raise ValueError('Error to bet, check valid conditions')
 
     def bettor_can_play(self, bettor: Bid):
         nobody_bet = True if not self.__bids else False
-        return nobody_bet or self.__bids[-1].user != bettor.user
+        if nobody_bet:
+            return True
+        else:
+            bet_is_greater_than_last = bettor.value > self.__bids[-1].value
+            is_not_same_bettor = self.__bids[-1].user != bettor.user
+            return is_not_same_bettor and bet_is_greater_than_last
