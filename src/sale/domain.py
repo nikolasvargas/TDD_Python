@@ -26,9 +26,16 @@ class Sale:
         return list(self.__bids)
 
     def to_bet(self, user_bids: Bid):
-        self.__bids.append(user_bids)
-        for bid in self.__bids:
-            if bid.value > self.higher_bid:
-                self.higher_bid = bid.value
-            if bid.value < self.lowest_bid:
-                self.lowest_bid = bid.value
+        if(self.bettor_can_play(user_bids)):
+            if user_bids.value > self.higher_bid:
+                self.higher_bid = user_bids.value
+            if user_bids.value < self.lowest_bid:
+                self.lowest_bid = user_bids.value
+
+            self.__bids.append(user_bids)
+        else:
+            raise ValueError('The same bettor cant bet twice in sequence')
+
+    def bettor_can_play(self, bettor: Bid):
+        nobody_bet = True if not self.__bids else False
+        return nobody_bet or self.__bids[-1].user != bettor.user
