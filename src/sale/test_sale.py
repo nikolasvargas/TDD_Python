@@ -48,17 +48,19 @@ class TestSale(unittest.TestCase):
     # if is first bet, allow bettors bet
     # TDD test
     def test_first_bet_amount(self):
-        EXPECTED_VALUE = 1
+        self.assertTrue(len(self.from_sale.bids) == 0)
         self.from_sale.to_bet(Bid(self.testcase1, 100))
-        self.assertEqual(EXPECTED_VALUE, len(self.from_sale.bids))
+        self.assertTrue(len(self.from_sale.bids) == 1)
 
     # same bettor can't bet twice in sequence
     # TDD test
     def test_not_be_allow_multiple_bets_in_sequence(self):
-        self.from_sale.to_bet(Bid(self.testcase1, 100))
-        self.from_sale.to_bet(Bid(self.testcase2, 100))
-        user_name_obj_id = [id(bid.user.name) for bid in self.from_sale.bids]
-        self.assertNotEqual(user_name_obj_id[0], user_name_obj_id[1])
+        try:
+            self.from_sale.to_bet(Bid(self.testcase1, 100))
+            self.from_sale.to_bet(Bid(self.testcase2, 100))
+        except ValueError:
+            user_name_obj_id = [id(bid.user.name) for bid in self.from_sale.bids]
+            self.assertNotEqual(user_name_obj_id[0], user_name_obj_id[1])
 
 if __name__ == "__main__":
     unittest.main()
