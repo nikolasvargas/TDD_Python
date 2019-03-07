@@ -35,7 +35,7 @@ class Bid:
 
     def user_can_bet(self):
         if self._user.balance >= self._value:
-            self._user.balance = self._user.balance - self._value
+            self._user.balance -= self._value
             return True
         else:
             raise ValueError('Insufficient funds')
