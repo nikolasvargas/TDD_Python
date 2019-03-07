@@ -1,7 +1,7 @@
 {
-    "python.pythonPath": "/usr/local/opt/python/bin/python3.6",
+    "python.pythonPath": "venv/bin/python",
     "python.unitTest.unittestEnabled": true,
-    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
     "python.unitTest.nosetestsEnabled": false,
     "python.unitTest.unittestArgs": [
         "-v",
@@ -13,6 +13,12 @@
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
         "javascript": "node",
-        "python": "python3.6 -u",
-    }
+        "python": "python3 -u",
+    },
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pep8Enabled": true,
+    "python.unitTest.pyTestArgs": [
+        "tests"
+    ]
 }
