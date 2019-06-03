@@ -64,13 +64,13 @@ class Sale:
         else:
             raise ValueError('Error to bet, check valid conditions')
 
-    def bettor_can_play(self, bettor: Bid):
-        nobody_bet = True if not self.__bids else False
+    def bettor_can_play(self, bettor: Bid) -> bool:
+        nobody_bet = bool(len(self.__bids) == 0)
         if nobody_bet:
             return True
         else:
-            bid_is_greater_than_last = bettor.value > self.__bids[-1].value
-            is_not_same_bettor = self.__bids[-1].user != bettor.user
+            bid_is_greater_than_last = bool(bettor.value > self.__bids[-1].value)
+            is_not_same_bettor = bool(self.__bids[-1].user != bettor.user)
             return (
                 is_not_same_bettor and
                 bid_is_greater_than_last and
