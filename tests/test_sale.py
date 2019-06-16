@@ -23,13 +23,11 @@ class TestSale(unittest.TestCase):
         self.assertEqual(HIGHER_EXPECTED_VALUE, self.from_sale.higher_bid)
 
     def test_highest_and_lowest_value_whit_more_than_two_bets(self):
-        total_bids = []
         LOWER_EXPECTED_VALUE = 100
         HIGHER_EXPECTED_VALUE = 1000
-
-        total_bids.append(Bid(self.testcase1, 100))
-        total_bids.append(Bid(self.testcase2, 700))
-        total_bids.append(Bid(self.testcase1, 1000))
+        total_bids = [Bid(self.testcase1, 100),
+                      Bid(self.testcase2, 700),
+                      Bid(self.testcase1, 1000)]
 
         for bid in total_bids:
             self.from_sale.to_bet(bid)
